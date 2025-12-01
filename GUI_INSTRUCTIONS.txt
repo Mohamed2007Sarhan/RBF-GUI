@@ -1,0 +1,67 @@
+Bitcoin RBF Transaction Tool - GUI Instructions
+==============================================
+
+1. SETUP REQUIREMENTS:
+   - Bitcoin Testnet node running with RPC enabled
+   - Python 3.6+ with required libraries installed
+   - Sufficient testnet BTC in your wallet
+
+2. RUNNING THE APPLICATION:
+   - Double-click "run_gui.bat" OR
+   - Run "python btc_rbf_gui.py" from command line
+
+3. CONFIGURATION TAB:
+   - Select your preferred language (English/Arabic)
+   - Enter your Bitcoin node connection details:
+     * Host: Usually "localhost" or "127.0.0.1"
+     * Port: Usually "18332" for testnet
+     * Username: Your RPC username
+     * Password: Your RPC password
+   - Click "Test Connection" to verify connectivity
+
+4. TRANSACTIONS TAB:
+   - Enter your wallet credentials:
+     * Private Key (WIF): Your private key in Wallet Import Format
+   - Enter wallet addresses:
+     * Wallet A (Source): Your source wallet address
+     * Wallet B (Change): Your change wallet address
+     * Wallet C (Receiver): The receiver's wallet address
+   - Enter the amount of BTC to use in transactions
+   - Click "Create Transaction Chain (Parent → Child)" to:
+     * Create a parent transaction with minimum fee (1 sat/vB)
+     * Enable RBF with sequence=0xfffffffd
+     * Create a dependent child transaction with standard fee (20 sat/vB)
+     * Broadcast both transactions to the network
+   - After successful chain creation, you can either:
+     * Click "Activate Kill Switch (RBF)" to:
+       - Create a replacement transaction with high fee (50 sat/vB)
+       - Spend the same UTXO as the parent
+       - Invalidate the entire transaction chain
+     * Click "Stop All & Return Funds to Wallet A" to:
+       - Create a replacement transaction with high fee (50 sat/vB)
+       - Spend the same UTXO as the parent
+       - Immediately return all funds to Wallet A
+
+5. ACTIVITY LOG TAB:
+   - View detailed logs of all operations with timestamps
+   - Click "Clear Log" to reset the log display
+
+6. FLOWCHART TAB:
+   - Visual representation of the transaction flow
+   - Shows the relationship between Wallet A, Parent TX, Wallet B, Child TX, Wallet C, and Kill Switch
+
+7. WALLET STATUS TAB:
+   - Indicates whether Wallet C has received funds or not
+   - Shows if funds have been returned to Wallet A
+
+8. TRANSACTION FLOW:
+   Wallet A → (Parent TX) → Wallet B → (Child TX) → Wallet C
+                     ↓ (RBF Kill Switch / Stop All)
+               Wallet A (funds returned)
+
+9. IMPORTANT NOTES:
+   - This tool is for Testnet only
+   - Ensure your node is fully synchronized
+   - Have sufficient funds for transaction fees
+   - The kill switch and stop all features permanently invalidate the transaction chain
+   - Language can be switched between English and Arabic at any time

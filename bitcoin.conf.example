@@ -1,0 +1,26 @@
+# Bitcoin Core Configuration File - Testnet Example
+# Save this as %APPDATA%\Bitcoin\bitcoin.conf on Windows
+
+# Run on testnet
+testnet=1
+
+# Enable RPC server
+server=1
+
+# RPC settings
+rpcuser=your_rpc_username_here
+rpcpassword=your_rpc_password_here
+rpcport=18332
+
+# Bind to localhost for security
+rpcbind=127.0.0.1
+rpcallowip=127.0.0.1
+
+# Enable wallet functionality
+disablewallet=0
+
+# Optional: Reduce storage requirements for testnet
+prune=2000
+
+# Optional: Enable replace-by-fee
+mempoolfullrbf=1
